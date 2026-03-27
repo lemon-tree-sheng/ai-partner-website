@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Partner — 核心能力演示 | 不米文化 BUMI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif; }
+    .gradient-text { background: linear-gradient(135deg, #60a5fa, #34d399); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .card-hover { transition: transform 0.2s ease, border-color 0.2s ease; }
+    .card-hover:hover { transform: translateY(-2px); }
+    .tab-active { background: rgba(59,130,246,0.15); border-color: rgba(59,130,246,0.5); color: #93c5fd; }
+    .tab-inactive { background: transparent; border-color: rgba(75,85,99,0.4); color: #9ca3af; }
+    .flow-line { border-top: 2px dashed rgba(75,85,99,0.5); }
+    .before-state { display: block; }
+    .after-state { display: none; }
+    .showing-after .before-state { display: none; }
+    .showing-after .after-state { display: block; }
+    .layer-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .layer-open .layer-content { max-height: 200px; }
+    .layer-open .layer-arrow { transform: rotate(90deg); }
+    .layer-arrow { transition: transform 0.3s ease; }
+    .paradox-bar { transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); }
+    .pulse-dot { animation: pulse-glow 2s infinite; }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(59,130,246,0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(59,130,246,0); }
+    }
+    .capability-card { transition: all 0.3s ease; }
+    .capability-card.selected { border-color: rgba(59,130,246,0.5); background: rgba(59,130,246,0.05); }
+    .service-card { cursor: pointer; transition: all 0.3s ease; }
+    .service-card:hover .service-back { opacity: 1; }
+    .service-back { opacity: 0; transition: opacity 0.3s ease; }
+    .tag { display: inline-flex; align-items: center; padding: 2px 10px; border-radius: 9999px; font-size: 12px; font-weight: 500; }
+    .scroll-nav { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; }
+    .scroll-nav::-webkit-scrollbar { display: none; }
+    .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(75,85,99,0.6); transition: all 0.3s; cursor: pointer; }
+    .nav-dot.active { background: #60a5fa; width: 24px; border-radius: 4px; }
+    @keyframes slide-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-in { animation: slide-in 0.5s ease forwards; }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { gray: { 950: '#070d1a' } }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 antialiased">
+
+  <!-- ── NAV ── -->
+  <nav class="sticky top-0 z-50 bg-gray-950/95 backdrop-blur border-b border-gray-800/60">
+    <div class="max-w-5xl mx-auto px-5 py-3.5 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="text-gray-500 hover:text-gray-300 text-sm transition-colors">← 返回主页</a>
+        <span class="text-gray-700">|</span>
+        <span class="text-sm font-medium text-gray-300">核心能力演示</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="tag bg-blue-500/10 border border-blue-500/20 text-blue-400">AI Partner</span>
+        <span class="text-gray-600 text-xs hidden sm:block">不米文化 BUMI</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="pt-20 pb-16 text-center">
+    <div class="max-w-3xl mx-auto px-5">
+      <p class="text-sm text-gray-500 uppercase tracking-widest mb-5">Product Capability Demo</p>
+      <h1 class="text-4xl md:text-5xl font-bold mb-5 leading-tight">
+        AI Partner<br>
+        <span class="gradient-text">五大核心能力</span>
+      </h1>
+      <p class="text-gray-400 text-lg leading-relaxed mb-8">
+        从真实问题出发，展示 AI Partner 如何把「AI 宏大叙事」<br class="hidden md:block">
+        拆解成可落地的个人系统能力。
+      </p>
+      <!-- Progress nav -->
+      <div class="flex justify-center gap-2 mt-6">
+        <div class="nav-dot active" onclick="scrollToSection(0)"></div>
+        <div class="nav-dot" onclick="scrollToSection(1)"></div>
+        <div class="nav-dot" onclick="scrollToSection(2)"></div>
+        <div class="nav-dot" onclick="scrollToSection(3)"></div>
+        <div class="nav-dot" onclick="scrollToSection(4)"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CAPABILITY 1: AI 懒人悖论
+  ══════════════════════════════════════════════ -->
+  <section class="demo-section py-20 border-t border-gray-800/50" data-idx="0">
+    <div class="max-w-4xl mx-auto px-5">
+
+      <div class="flex items-center gap-3 mb-8">
+        <div class="w-8 h-8 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-400 text-sm font-bold">1</div>
+        <span class="text-gray-500 text-sm uppercase tracking-widest">能力一</span>
+      </div>
+
+      <h2 class="text-2xl md:text-3xl font-bold mb-3">诊断：你在用 AI，还是被 AI 用？</h2>
+      <p class="text-gray-400 mb-10 text-lg">AI 懒人悖论——这是 AI 时代最隐蔽的陷阱</p>
+
+      <!-- Paradox Visual -->
+      <div class="bg-gray-900/60 border border-gray-700/40 rounded-2xl p-8 mb-8">
+        <div class="text-center mb-8">
+          <p class="text-gray-300 text-lg mb-2">AI 越强 → 懒人越想依赖 → 懒人越弱 → 反而越驾驭不了 AI</p>
+          <p class="text-gray-500 text-sm">这是一个自我强化的负向循环</p>
+        </div>
+
+        <!-- Spectrum bar -->
+        <div class="mb-8">
+          <div class="flex justify-between text-xs text-gray-500 mb-2">
+            <span>😴 懒人用法</span>
+            <span>🚀 驾驭者</span>
+          </div>
+          <div class="relative h-3 bg-gray-800 rounded-full overflow-hidden">
+            <div id="paradoxBar" class="paradox-bar h-full rounded-full bg-gradient-to-r from-red-500 via-amber-500 to-green-500" style="width: 30%"></div>
+            <div id="paradoxHandle" class="absolute top-1/2 -translate-y-1/2 w-5 h-5 bg-white rounded-full shadow-lg cursor-pointer border-2 border-gray-300 pulse-dot" style="left: calc(30% - 10px)" id="sliderHandle"></div>
+          </div>
+          <p class="text-center text-sm mt-3 text-gray-400" id="paradoxLabel">你在哪？拖动滑块自测</p>
+        </div>
+
+        <!-- Two sides -->
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-red-500/5 border border-red-500/20 rounded-xl p-5">
+            <div class="text-red-400 font-semibold mb-3 flex items-center gap-2">
+              <span>😴</span> 懒人用法（陷阱）
+            </div>
+            <ul class="text-sm text-gray-400 space-y-2">
+              <li>• 让 AI 写完整邮件，直接发送，不思考</li>
+              <li>• 遇到问题先问 AI，答案直接复制粘贴</li>
+              <li>• 订阅所有 AI 工具，但没有一套固定工作流</li>
+              <li>• 结果：越用越依赖，思考能力悄悄退化</li>
+            </ul>
+          </div>
+          <div class="bg-green-500/5 border border-green-500/20 rounded-xl p-5">
+            <div class="text-green-400 font-semibold mb-3 flex items-center gap-2">
+              <span>🚀</span> 驾驭者用法
+            </div>
+            <ul class="text-sm text-gray-400 space-y-2">
+              <li>• 先有自己的判断，再让 AI 验证和补充</li>
+              <li>• 把 AI 当员工，给清晰任务和充足上下文</li>
+              <li>• 一套固定工作流，新工具是输入不是重启</li>
+              <li>• 结果：AI 越强，你越强，正向飞轮</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problem statement -->
+      <div class="bg-amber-500/5 border border-amber-500/20 rounded-xl p-5 flex gap-4">
+        <span class="text-2xl shrink-0">💡</span>
+        <div>
+          <p class="font-semibold text-amber-300 mb-1">AI Partner 解决的问题</p>
+          <p class="text-gray-400 text-sm leading-relaxed">你用了 AI 3 个月以上，但工作方式没有实质改变。不是 AI 不够强，是你还没有建立<strong class="text-gray-300">驾驭 AI 的系统</strong>。AI Partner 帮你从"懒人用户"升级到"驾驭者"。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CAPABILITY 2: 五维能力系统
+  ══════════════════════════════════════════════ -->
+  <section class="demo-section py-20 border-t border-gray-800/50" data-idx="1">
+    <div class="max-w-4xl mx-auto px-5">
+
+      <div class="flex items-center gap-3 mb-8">
+        <div class="w-8 h-8 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-400 text-sm font-bold">2</div>
+        <span class="text-gray-500 text-sm uppercase tracking-widest">能力二</span>
+      </div>
+
+      <h2 class="text-2xl md:text-3xl font-bold mb-3">五维能力：驾驭 AI 的真正基础</h2>
+      <p class="text-gray-400 mb-10 text-lg">这五个能力可以练，不是虚的理念。点击每张卡片查看具体案例。</p>
+
+      <div class="grid md:grid-cols-5 gap-3 mb-8" id="capabilityGrid">
+
+        <!-- Cap 1: 判断力 -->
+        <div class="capability-card selected bg-gray-800/40 border border-blue-500/40 rounded-xl p-4 cursor-pointer text-center" onclick="selectCap(0)">
+          <div class="text-blue-400 font-bold text-lg mb-1">01</div>
+          <div class="font-medium text-sm">判断力</div>
+          <div class="text-xs text-gray-500 mt-1">知道 AI 哪里说错了</div>
+        </div>
+
+        <!-- Cap 2: 上下文 -->
+        <div class="capability-card bg-gray-800/40 border border-gray-700/40 rounded-xl p-4 cursor-pointer text-center" onclick="selectCap(1)">
+          <div class="text-blue-400 font-bold text-lg mb-1">02</div>
+          <div class="font-medium text-sm">上下文</div>
+          <div class="text-xs text-gray-500 mt-1">给 AI 有料的背景</div>
+        </div>
+
+        <!-- Cap 3: 品位 -->
+        <div class="capability-card bg-gray-800/40 border border-gray-700/40 rounded-xl p-4 cursor-pointer text-center" onclick="selectCap(2)">
+          <div class="text-blue-400 font-bold text-lg mb-1">03</div>
+          <div class="font-medium text-sm">品位标准</div>
+          <div class="text-xs text-gray-500 mt-1">判断输出好不好</div>
+        </div>
+
+        <!-- Cap 4: 决策 -->
+        <div class="capability-card bg-gray-800/40 border border-gray-700/40 rounded-xl p-4 cursor-pointer text-center" onclick="selectCap(3)">
+          <div class="text-blue-400 font-bold text-lg mb-1">04</div>
+          <div class="font-medium text-sm">决策能力</div>
+          <div class="text-xs text-gray-500 mt-1">用分析来决策</div>
+        </div>
+
+        <!-- Cap 5: 构建问题 -->
+        <div class="capability-card bg-gray-800/40 border border-gray-700/40 rounded-xl p-4 cursor-pointer text-center" onclick="selectCap(4)">
+          <div class="text-blue-400 font-bold text-lg mb-1">05</div>
+          <div class="font-medium text-sm">构建问题</div>
+          <div class="text-xs text-gray-500 mt-1">知道要问什么</div>
+        </div>
+      </div>
+
+      <!-- Detail panel -->
+      <div id="capDetail" class="bg-gray-900/60 border border-gray-700/40 rounded-2xl p-6 animate-in">
+        <!-- filled by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CAPABILITY 3: AI OS 四层架构
+  ══════════════════════════════════════════════ -->
+  <section class="demo-section py-20 border-t border-gray-800/50" data-idx="2">
+    <div class="max-w-4xl mx-auto px-5">
+
+      <div class="flex items-center gap-3 mb-8">
+        <div class="w-8 h-8 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-400 text-sm font-bold">3</div>
+        <span class="text-gray-500 text-sm uppercase tracking-widest">能力三</span>
+      </div>
+
+      <h2 class="text-2xl md:text-3xl font-bold mb-3">AI OS：四层个人操作系统</h2>
+      <p class="text-gray-400 mb-3 text-lg">AI OS 不是一个 App，是一套让 AI 真正为你工作的个人系统。</p>
+      <p class="text-gray-500 text-sm mb-10">点击每一层查看详细说明和实际工具</p>
+
+      <div class="space-y-3 mb-8">
+        <!-- Layer 1 -->
+        <div class="layer-item bg-gray-800/40 border border-gray-700/40 rounded-xl overflow-hidden layer-open" onclick="toggleLayer(this)">
+          <div class="flex items-center gap-4 p-5 cursor-pointer">
+            <div class="w-10 h-10 rounded-lg bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-400 text-lg shrink-0">📚</div>
+            <div class="flex-1">
+              <div class="font-semibold">层 1 — 知识库</div>
+              <div class="text-sm text-gray-500">给 AI 喂饱上下文，让它真正理解你的工作</div>
+            </div>
+            <svg class="layer-arrow w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+          <div class="layer-content">
+            <div class="px-5 pb-5 pt-1 border-t border-gray-700/30">
+              <div class="grid md:grid-cols-3 gap-3">
+                <div class="bg-gray-900/60 rounded-lg p-3">
+                  <div class="text-xs text-gray-500 mb-1">解决的问题</div>
+                  <div class="text-sm text-gray-300">信息散落在备忘录/微信/邮件，AI 每次都从零开始，没有记忆</div>
+                </div>
+                <div class="bg-gray-900/60 rounded-lg p-3">
+                  <div class="text-xs text-gray-500 mb-1">实际工具</div>
+                  <div class="text-sm text-gray-300">Obsidian + Cursor，用 `.cursorrules` 注入个人背景，Daily Log 沉淀决策上下文</div>
+                </div>
+                <div class="bg-gray-900/60 rounded-lg p-3">
+                  <div class="text-xs text-gray-500 mb-1">建立后的效果</div>
+                  <div class="text-sm text-gray-300">30 秒内找到 3 个月前的任意决策背景，AI 每次对话都知道你是谁</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Layer 2 -->
+        <div class="layer-item bg-gray-800/40 border border-gray-700/40 rounded-xl overflow-hidden" onclick="toggleLayer(this)">
+          <div class="flex items-center gap-4 p-5 cursor-pointer">
+            <div class="w-10 h-10 rounded-lg bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-lg shrink-0">⚡</div>
+            <div class="flex-1">
+              <div class="font-semibold">层 2 — 工作流</div>
+              <div class="text-sm text-gray-500">手动 → 半自动 → 全自动的渐进演化路径</div>
+            </div>
+            <svg class="layer-arrow w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+          <div class="layer-content">
+            <div class="px-5 pb-5 pt-1 border-t border-gray-700/30">
+              <div class="grid md:grid-cols-3 gap-3">
+                <div class="bg-gray-900/60 rounded-lg p-3">
+                  <div class="text-xs text-gray-500 mb-1">解决的问题</div>
+                  <div class="text-sm text-gray-300">急于自动化是本末倒置——没沉淀好工作系统就搭自动化，最终什么都跑不起来</div>
+                </div>
+                <div class="bg-gray-900/60 rounded-lg p-3">
+                  <div class="text-xs text-gray-500 mb-1">三层设计</div>
+                  <div class="text-sm text-gray-300">📱 捕获（Apple Notes 录音）→ 🤖 初筛（豆包整理）→ 💻 深加工（Mac+Cursor）</div>
+                </div>
+                <div class="bg-gray-900/60 rounded-lg p-3">
+                  <div class="text-xs text-gray-500 mb-1">关键原则</div>
+                  <div class="text-sm text-gray-300">不跳步骤。移动端负责"捕获"，豆包负责"初筛"，Cursor 负责"深加工"——三层分工明确</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Layer 3 -->
+        <div class="layer-item bg-gray-800/40 border border-gray-700/40 rounded-xl overflow-hidden" onclick="toggleLayer(this)">
+          <div class="flex items-center gap-4 p-5 cursor-pointer">
+            <div class="w-10 h-10 rounded-lg bg-purple-500/20 border border-purple-500/30 flex items-center justify-center text-purple-400 text-lg shrink-0">🎯</div>
+            <div class="flex-1">
+              <div class="font-semibold">层 3 — 判断框架</div>
+              <div class="text-sm text-gray-500">知道何时用 AI、何时不用、何时相信它</div>
+            </div>
+            <svg class="layer-arrow w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+          <div class="layer-content">
+            <div class="px-5 pb-5 pt-1 border-t border-gray-700/30">
+              <div class="grid md:grid-cols-3 gap-3">
+                <div class="bg-gray-900/60 rounded-lg p-3">
+                  <div class="text-xs text-gray-500 mb-1">解决的问题</div>
+                  <div class="text-sm text-gray-300">AI 焦虑一半真实一半被制造。"必须现在学"的紧迫感，多数时候可以等 6 个月</div>
+                </div>
+                <div class="bg-gray-900/60 rounded-lg p-3">
+                  <div class="text-xs text-gray-500 mb-1">判断规则</div>
+                  <div class="text-sm text-gray-300">技术真实突破（值得准备）vs. 资本叙事（可以观望）——区分这两类是核心判断力</div>
+                </div>
+                <div class="bg-gray-900/60 rounded-lg p-3">
+                  <div class="text-xs text-gray-500 mb-1">建立方式</div>
+                  <div class="text-sm text-gray-300">每周 AI 市场分析（正反两面）+ 每日 AI 观察记录 + 在真实决策节点触发学习</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Layer 4 -->
+        <div class="layer-item bg-gray-800/40 border border-gray-700/40 rounded-xl overflow-hidden" onclick="toggleLayer(this)">
+          <div class="flex items-center gap-4 p-5 cursor-pointer">
+            <div class="w-10 h-10 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-lg shrink-0">🤝</div>
+            <div class="flex-1">
+              <div class="font-semibold">层 4 — 协作模式</div>
+              <div class="text-sm text-gray-500">把 AI 当员工，而不是搜索引擎</div>
+            </div>
+            <svg class="layer-arrow w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+          <div class="layer-content">
+            <div class="px-5 pb-5 pt-1 border-t border-gray-700/30">
+              <div class="grid md:grid-cols-3 gap-3">
+                <div class="bg-gray-900/60 rounded-lg p-3">
+                  <div class="text-xs text-gray-500 mb-1">解决的问题</div>
+                  <div class="text-sm text-gray-300">没有自己的生意，AI 就是个玩具。AI 的价值取决于你有多少事情给到它</div>
+                </div>
+                <div class="bg-gray-900/60 rounded-lg p-3">
+                  <div class="text-xs text-gray-500 mb-1">员工式协作</div>
+                  <div class="text-sm text-gray-300">给 AI 角色定位 + 清晰任务 + 充足上下文 + 验收标准。它不需要工资，只需要上下文</div>
+                </div>
+                <div class="bg-gray-900/60 rounded-lg p-3">
+                  <div class="text-xs text-gray-500 mb-1">日常示例</div>
+                  <div class="text-sm text-gray-300">Cursor Rules 定义 AI 的角色，Daily Log 提供当日上下文，项目 README 作为工作背景</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-blue-500/5 border border-blue-500/20 rounded-xl p-5 text-center">
+        <p class="text-gray-300">这套系统一旦建立，新工具的更迭就不再让你焦虑。<br>
+        <span class="text-gray-500 text-sm">因为新工具是你系统的输入，而不是让你重新出发的理由。</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CAPABILITY 4: 工作流演示（Before/After）
+  ══════════════════════════════════════════════ -->
+  <section class="demo-section py-20 border-t border-gray-800/50" data-idx="3">
+    <div class="max-w-4xl mx-auto px-5">
+
+      <div class="flex items-center gap-3 mb-8">
+        <div class="w-8 h-8 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-400 text-sm font-bold">4</div>
+        <span class="text-gray-500 text-sm uppercase tracking-widest">能力四</span>
+      </div>
+
+      <h2 class="text-2xl md:text-3xl font-bold mb-3">工作流：三层捕获系统</h2>
+      <p class="text-gray-400 mb-10 text-lg">系统的胜利 > 个人的辛苦。对的工作流让你高精力、好心情、高产出。</p>
+
+      <!-- Toggle -->
+      <div class="flex gap-3 mb-8" id="workflowToggle">
+        <button onclick="setWorkflow('before')" id="btnBefore"
+          class="px-5 py-2.5 rounded-xl border text-sm font-medium transition-all border-red-500/40 bg-red-500/10 text-red-300">
+          😤 现在的状态（混乱）
+        </button>
+        <button onclick="setWorkflow('after')" id="btnAfter"
+          class="px-5 py-2.5 rounded-xl border text-sm font-medium transition-all border-gray-700 text-gray-400">
+          🚀 建立系统后
+        </button>
+      </div>
+
+      <!-- Before state -->
+      <div id="workflowBefore" class="space-y-4">
+        <div class="bg-red-500/5 border border-red-500/15 rounded-2xl p-6">
+          <p class="text-red-300 font-semibold mb-4">⚠️ 你现在的工作流（混乱版）</p>
+          <div class="flex flex-col md:flex-row gap-2 items-center">
+            <div class="bg-gray-800/60 rounded-lg p-3 text-center text-sm flex-1">
+              <div class="text-2xl mb-1">📱</div>
+              <div class="text-gray-300">手机随手记</div>
+              <div class="text-xs text-gray-500 mt-1">想法散落在备忘录/微信/笔记</div>
+            </div>
+            <div class="text-gray-600 font-bold">→</div>
+            <div class="bg-gray-800/60 rounded-lg p-3 text-center text-sm flex-1">
+              <div class="text-2xl mb-1">❓</div>
+              <div class="text-gray-300">不知道怎么处理</div>
+              <div class="text-xs text-gray-500 mt-1">直接扔给 ChatGPT，答案不知道对不对</div>
+            </div>
+            <div class="text-gray-600 font-bold">→</div>
+            <div class="bg-gray-800/60 rounded-lg p-3 text-center text-sm flex-1">
+              <div class="text-2xl mb-1">😵</div>
+              <div class="text-gray-300">结果乱且无法追溯</div>
+              <div class="text-xs text-gray-500 mt-1">AI 每次都从零开始，没有上下文积累</div>
+            </div>
+          </div>
+          <div class="mt-4 grid md:grid-cols-3 gap-3 text-xs text-gray-500">
+            <div class="bg-gray-900/40 rounded-lg p-3">❌ 思考散乱，做了很多但没有推进</div>
+            <div class="bg-gray-900/40 rounded-lg p-3">❌ AI 每次都要重新解释背景</div>
+            <div class="bg-gray-900/40 rounded-lg p-3">❌ 想法沉没，三个月前的洞察找不回来</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- After state -->
+      <div id="workflowAfter" class="space-y-4 hidden">
+        <div class="bg-green-500/5 border border-green-500/15 rounded-2xl p-6">
+          <p class="text-green-300 font-semibold mb-4">✅ 建立 AI OS 三层工作流后</p>
+          <div class="flex flex-col md:flex-row gap-2 items-start">
+            <div class="bg-gray-800/60 border border-blue-500/20 rounded-lg p-4 text-sm flex-1">
+              <div class="text-2xl mb-2">📱</div>
+              <div class="text-blue-300 font-medium mb-1">层 1：捕获</div>
+              <div class="text-gray-400 text-xs">Apple Notes 录音 / 随手记<br>职责：只捕获，不处理<br>原则：不在手机上深加工</div>
+            </div>
+            <div class="flex items-center text-gray-500 font-bold md:mt-6 md:px-1">→</div>
+            <div class="bg-gray-800/60 border border-cyan-500/20 rounded-lg p-4 text-sm flex-1">
+              <div class="text-2xl mb-2">🤖</div>
+              <div class="text-cyan-300 font-medium mb-1">层 2：初筛</div>
+              <div class="text-gray-400 text-xs">豆包整理成结构化内容<br>职责：初步分类，去掉噪音<br>原则：必须经过这一层</div>
+            </div>
+            <div class="flex items-center text-gray-500 font-bold md:mt-6 md:px-1">→</div>
+            <div class="bg-gray-800/60 border border-purple-500/20 rounded-lg p-4 text-sm flex-1">
+              <div class="text-2xl mb-2">💻</div>
+              <div class="text-purple-300 font-medium mb-1">层 3：深加工</div>
+              <div class="text-gray-400 text-xs">Mac + Cursor 深度处理<br>职责：关联项目、归档、决策<br>原则：最高效 AI 协同在此</div>
+            </div>
+          </div>
+          <div class="mt-4 grid md:grid-cols-3 gap-3 text-xs text-gray-400">
+            <div class="bg-gray-900/40 border border-green-500/10 rounded-lg p-3">✅ 每个想法都有归宿，不遗漏</div>
+            <div class="bg-gray-900/40 border border-green-500/10 rounded-lg p-3">✅ AI 每次都有完整上下文</div>
+            <div class="bg-gray-900/40 border border-green-500/10 rounded-lg p-3">✅ 系统积累，3 个月后回报指数级</div>
+          </div>
+        </div>
+
+        <div class="bg-gray-900/40 border border-gray-700/30 rounded-xl p-5">
+          <p class="text-sm text-gray-400 mb-3 font-medium">📌 关键洞察：为什么不能跳步骤？</p>
+          <p class="text-gray-500 text-sm leading-relaxed">移动端场景下直接输入 Cursor 的内容往往是"没想清楚的"，容易触发<strong class="text-gray-300">焦虑式工作</strong>（做了很多但没有实质推进）。豆包负责"初筛"的意义不是整理，而是强迫你的想法经过一次粗加工，确认值得深入处理再进 Cursor。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CAPABILITY 5: 宏大叙事拆解
+  ══════════════════════════════════════════════ -->
+  <section class="demo-section py-20 border-t border-gray-800/50" data-idx="4">
+    <div class="max-w-4xl mx-auto px-5">
+
+      <div class="flex items-center gap-3 mb-8">
+        <div class="w-8 h-8 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-400 text-sm font-bold">5</div>
+        <span class="text-gray-500 text-sm uppercase tracking-widest">能力五</span>
+      </div>
+
+      <h2 class="text-2xl md:text-3xl font-bold mb-3">宏大叙事 → 具体服务</h2>
+      <p class="text-gray-400 mb-10 text-lg">AI 是宏大叙事。从办公司的角度，必须把叙事拆解成能收费的具体服务。</p>
+
+      <!-- Transformation Demo -->
+      <div class="mb-8">
+        <p class="text-gray-500 text-sm mb-4">👆 拖动滑块，看宏大叙事如何变成具体服务</p>
+        <div class="relative mb-6">
+          <input type="range" min="0" max="100" value="0" id="transformSlider"
+            class="w-full h-2 bg-gray-800 rounded-full appearance-none cursor-pointer"
+            style="accent-color: #3b82f6;"
+            oninput="updateTransform(this.value)">
+          <div class="flex justify-between text-xs text-gray-600 mt-2">
+            <span>宏大叙事</span>
+            <span>具体服务</span>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-5">
+          <!-- Vague version -->
+          <div id="vagueCard" class="bg-red-500/5 border border-red-500/20 rounded-2xl p-6 transition-all">
+            <div class="tag bg-red-500/10 border border-red-500/20 text-red-400 mb-4">❌ 无法收费的表达</div>
+            <p class="text-gray-300 text-lg font-medium mb-3" id="vagueText">"帮助客户更好地使用 AI，提升效率"</p>
+            <div class="space-y-2 text-sm text-gray-500">
+              <div>🤔 谁的问题？— 不知道</div>
+              <div>🤔 交付什么？— 不知道</div>
+              <div>🤔 怎么验收？— 不知道</div>
+            </div>
+          </div>
+
+          <!-- Specific version -->
+          <div id="specificCard" class="bg-green-500/5 border border-green-500/20 rounded-2xl p-6 transition-all opacity-30">
+            <div class="tag bg-green-500/10 border border-green-500/20 text-green-400 mb-4">✅ 可以收费的服务</div>
+            <p class="text-gray-300 text-base font-medium mb-3" id="specificText">"帮用了 AI 超过 3 个月但工作方式没有实质改变的知识工作者，4 周内建立一套可运转的个人 AI 工作系统（知识库 + 工作流 + 判断框架），验收：能描述 AI 每天真正参与了哪 3 个节点"</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3-Question Framework -->
+      <div class="bg-gray-900/60 border border-gray-700/40 rounded-2xl p-7">
+        <h3 class="font-semibold mb-5 flex items-center gap-2">
+          <span class="text-blue-400">🔍</span> 服务三问框架 — 每个服务都必须过这三关
+        </h3>
+        <div class="space-y-4">
+          <div class="flex gap-4 items-start">
+            <div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 text-sm font-bold shrink-0">1</div>
+            <div>
+              <div class="font-medium mb-1">问题定义</div>
+              <p class="text-gray-400 text-sm">谁的什么问题？——具体的人 + 具体的痛，不是泛化的客户群</p>
+              <div class="mt-2 bg-gray-800/40 rounded-lg p-3 text-xs text-gray-500">
+                ❌ "AI 焦虑的用户"<br>
+                ✅ "用了 AI 工具 3 个月以上，工作方式没有实质改变，不知道问题出在哪里的知识工作者"
+              </div>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <div class="w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 text-sm font-bold shrink-0">2</div>
+            <div>
+              <div class="font-medium mb-1">可交付的价值</div>
+              <p class="text-gray-400 text-sm">能交付什么？——具体的产出，不是"帮助提升"</p>
+              <div class="mt-2 bg-gray-800/40 rounded-lg p-3 text-xs text-gray-500">
+                ❌ "帮你提升 AI 使用效率 30%"<br>
+                ✅ "4 周内交付：①知识库架构 ②工作流文档 ③工具配置 ④90 天运转指南"
+              </div>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <div class="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 text-sm font-bold shrink-0">3</div>
+            <div>
+              <div class="font-medium mb-1">验收标准</div>
+              <p class="text-gray-400 text-sm">客户怎么知道问题解决了？——可观察，最好可量化</p>
+              <div class="mt-2 bg-gray-800/40 rounded-lg p-3 text-xs text-gray-500">
+                ❌ "感觉 AI 更好用了"<br>
+                ✅ "工作坊结束后第一周，能独立完成一个以前需要 2 倍时间的任务"
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       PRODUCT TIERS
+  ══════════════════════════════════════════════ -->
+  <section class="py-20 border-t border-gray-800/50 bg-gray-900/30">
+    <div class="max-w-4xl mx-auto px-5">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold mb-3">三层服务：从哪里开始都行</h2>
+        <p class="text-gray-400">每个服务都通过了「服务三问」的精确定义</p>
+      </div>
+
+      <div class="space-y-4">
+        <!-- Tier 1 -->
+        <div class="bg-gray-800/40 border border-gray-700/40 rounded-2xl p-6 flex flex-col md:flex-row gap-6">
+          <div class="md:w-48 shrink-0">
+            <div class="tag bg-gray-700/50 text-gray-400 mb-2">Tier 1 · 免费</div>
+            <div class="text-lg font-bold mb-1">AI 不焦虑周报</div>
+            <div class="text-2xl font-bold text-gray-300">免费</div>
+          </div>
+          <div class="flex-1 grid md:grid-cols-3 gap-4 text-sm">
+            <div>
+              <div class="text-xs text-gray-500 mb-1">① 问题</div>
+              <div class="text-gray-400">关注 AI 的人被大量新闻淹没，不知道哪些值得行动，哪些是噪音</div>
+            </div>
+            <div>
+              <div class="text-xs text-gray-500 mb-1">② 交付</div>
+              <div class="text-gray-400">每周 1 洞察 + 1 工具技巧 + 1 可执行动作，直接告诉你对你的工作意味着什么</div>
+            </div>
+            <div>
+              <div class="text-xs text-gray-500 mb-1">③ 验收</div>
+              <div class="text-gray-400">读完后能说出：这期我打算做 X，或这件事对我暂时不重要</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tier 2 -->
+        <div class="bg-blue-500/5 border border-blue-500/25 rounded-2xl p-6 flex flex-col md:flex-row gap-6">
+          <div class="md:w-48 shrink-0">
+            <div class="tag bg-blue-500/10 border border-blue-500/20 text-blue-400 mb-2">Tier 2 · 课程</div>
+            <div class="text-lg font-bold mb-1">系统实战课</div>
+            <div class="text-2xl font-bold text-blue-400">¥399<span class="text-sm text-gray-500 font-normal"> 早鸟</span></div>
+          </div>
+          <div class="flex-1 grid md:grid-cols-3 gap-4 text-sm">
+            <div>
+              <div class="text-xs text-gray-500 mb-1">① 问题</div>
+              <div class="text-gray-400">用了 AI 工具 3 个月以上，工作方式没有实质改变，不知道问题出在哪里</div>
+            </div>
+            <div>
+              <div class="text-xs text-gray-500 mb-1">② 交付</div>
+              <div class="text-gray-400">8 模块走完后，有一套可运转的个人 AI 工作系统（知识库 + 工作流 + 判断框架）</div>
+            </div>
+            <div>
+              <div class="text-xs text-gray-500 mb-1">③ 验收</div>
+              <div class="text-gray-400">能描述自己一天工作中 AI 在哪 3 个节点真正参与了，而不是偶尔问一个问题</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tier 3 -->
+        <div class="bg-gray-800/40 border border-gray-700/40 rounded-2xl p-6 flex flex-col md:flex-row gap-6">
+          <div class="md:w-48 shrink-0">
+            <div class="tag bg-amber-500/10 border border-amber-500/20 text-amber-400 mb-2">Tier 3 · 私定</div>
+            <div class="text-lg font-bold mb-1">AI OS 私定工作坊</div>
+            <div class="text-2xl font-bold">¥5,999<span class="text-sm text-gray-500 font-normal"> /人</span></div>
+            <div class="text-xs text-gray-500 mt-1">每月限 5 人</div>
+          </div>
+          <div class="flex-1 grid md:grid-cols-3 gap-4 text-sm">
+            <div>
+              <div class="text-xs text-gray-500 mb-1">① 问题</div>
+              <div class="text-gray-400">有定制化需求（创业者/团队负责人），知道 AI 能帮忙，但没有能力独立设计和搭建专属系统</div>
+            </div>
+            <div>
+              <div class="text-xs text-gray-500 mb-1">② 交付</div>
+              <div class="text-gray-400">4 周交付：①知识库架构 ②工作流文档 ③Cursor/工具配置 ④90 天运转指南</div>
+            </div>
+            <div>
+              <div class="text-xs text-gray-500 mb-1">③ 验收</div>
+              <div class="text-gray-400">工作坊结束后第一周，能独立完成一个以前需要 2 倍时间的任务，用自己的 AI OS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER CTA ── -->
+  <section class="py-16 text-center border-t border-gray-800/50">
+    <div class="max-w-xl mx-auto px-5">
+      <h2 class="text-2xl font-bold mb-3">准备好开始了？</h2>
+      <p class="text-gray-400 mb-8">从免费周报开始，停止焦虑，开始建系统。</p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="index.html#newsletter"
+           class="bg-blue-500 hover:bg-blue-400 text-white font-semibold px-8 py-3.5 rounded-xl transition-all">
+          免费订阅周报 →
+        </a>
+        <a href="index.html#products"
+           class="border border-gray-700 hover:border-gray-500 text-gray-300 hover:text-white font-semibold px-8 py-3.5 rounded-xl transition-all">
+          查看完整服务
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── JS ── -->
+  <script>
+    // --- Sections for nav ---
+    const sections = document.querySelectorAll('.demo-section');
+    const navDots = document.querySelectorAll('.nav-dot');
+
+    function scrollToSection(idx) {
+      sections[idx]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const idx = e.target.dataset.idx;
+          navDots.forEach((d, i) => d.classList.toggle('active', i == idx));
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(s => observer.observe(s));
+
+    // --- Paradox slider ---
+    const sliderEl = document.getElementById('sliderHandle');
+    const barEl = document.getElementById('paradoxBar');
+    const labelEl = document.getElementById('paradoxLabel');
+    const labels = [
+      '😴 完全懒人用法——被动接受 AI 输出，不思考不验证',
+      '😓 偶尔懒、偶尔认真——没有系统，凭感觉用',
+      '😐 有意识了，但还没有系统——知道应该做什么但没做',
+      '💪 有工作流了——但知识库和判断框架还不完整',
+      '🚀 驾驭者——AI 真正成为你业务的员工'
+    ];
+    let isDragging = false;
+    let currentVal = 30;
+
+    function updateParadox(val) {
+      currentVal = val;
+      barEl.style.width = val + '%';
+      sliderEl.style.left = 'calc(' + val + '% - 10px)';
+      const idx = Math.floor(val / 25);
+      labelEl.textContent = labels[Math.min(idx, 4)];
+    }
+
+    sliderEl.addEventListener('mousedown', () => isDragging = true);
+    document.addEventListener('mousemove', e => {
+      if (!isDragging) return;
+      const bar = barEl.parentElement.getBoundingClientRect();
+      const pct = Math.max(0, Math.min(100, ((e.clientX - bar.left) / bar.width) * 100));
+      updateParadox(Math.round(pct));
+    });
+    document.addEventListener('mouseup', () => isDragging = false);
+    sliderEl.addEventListener('touchmove', e => {
+      const bar = barEl.parentElement.getBoundingClientRect();
+      const pct = Math.max(0, Math.min(100, ((e.touches[0].clientX - bar.left) / bar.width) * 100));
+      updateParadox(Math.round(pct));
+    });
+
+    // --- Capabilities ---
+    const capData = [
+      {
+        title: '判断力 — 知道 AI 哪里说错了',
+        problem: 'AI 生成的内容有时是错的、过时的、或不适合你的语境的。没有领域深度，你无法发现问题，只能全盘接受。',
+        example: '❌ 让 AI 分析竞争对手，然后把报告直接发给老板。\n✅ 先有自己的判断，再让 AI 补充论据，最终你能指出 AI 报告中的 2 个偏差。',
+        training: 'AI Partner 帮你建立特定领域的判断力清单，每次 AI 输出后用清单验证，逐步形成"AI 雷达"。',
+        icon: '🎯'
+      },
+      {
+        title: '上下文给予能力 — 给 AI 有料的背景',
+        problem: '给 AI 模糊的问题，得到的是模糊的答案。"帮我写个方案" vs "我是做 B2B SaaS 的，目标客户是 50 人以下的初创公司，预算 2w，帮我写竞品分析"——差别是量级的。',
+        example: '❌ "帮我分析一下最近的 AI 趋势"\n✅ "我在做 AI 协作系统教练业务，目标客户是深圳创业者，帮我分析哪些 AI 趋势对他们最有商业意义，从业务落地角度，不是技术角度"',
+        training: 'AI Partner 帮你建立个人知识库（Obsidian+Cursor），让 AI 每次对话都能自动调用你的背景、项目、决策历史。',
+        icon: '📋'
+      },
+      {
+        title: '品位与标准 — 判断输出好不好',
+        problem: '很多人用 AI 是因为自己不会做。但如果自己没有标准，就无法判断 AI 输出的好坏，从而接受了平庸的结果。',
+        example: '❌ "AI 帮我写了个 landing page 文案，感觉还不错"\n✅ "AI 写的文案，我用「是否有清晰的问题定义」「是否有具体的交付物」「是否能验收」三个标准检查，发现全部不过关，让它重写"',
+        training: 'AI Partner 帮你为每个工作场景建立验收清单，把你的品位标准转化成可复用的检查机制。',
+        icon: '⭐'
+      },
+      {
+        title: '决策能力 — 用 AI 分析来决策，不是让 AI 替你决策',
+        problem: '把决策权交给 AI 是危险的——AI 没有你的风险偏好、资源约束和长期目标。AI 应该是你决策的弹药，不是决策的主体。',
+        example: '❌ "AI 说选方案 A，那就选方案 A 吧"\n✅ "让 AI 同时分析方案 A、B、C，从成本/时间/风险三个维度打分，然后我根据我的资源约束和优先级，独立做出选择，结果选了方案 B"',
+        training: 'AI Partner 帮你建立决策框架，让 AI 产出可比较的选项分析，而不是直接给答案。',
+        icon: '⚖️'
+      },
+      {
+        title: '问题构建能力 — 知道要问什么',
+        problem: '问好问题是稀缺能力。很多人对 AI 发出的是「我想让你帮我做点什么」，而不是「我要解决的具体问题是 X，约束是 Y，我需要 Z 格式的输出」。',
+        example: '❌ "帮我想想怎么提高工作效率"\n✅ "我是独立创业者，每周有 40 小时工作时间，当前 8 个项目并行，最大的瓶颈是日志和项目更新占用了 30% 时间。帮我设计一个每天 15 分钟完成日志归档的系统方案，给出 3 个选项，按实施难度排序"',
+        training: 'AI Partner 帮你建立 DeepQuestion 问题重构框架，把模糊问题升级为决策级提问，每次提问都是在训练自己。',
+        icon: '🔍'
+      }
+    ];
+
+    function selectCap(idx) {
+      document.querySelectorAll('.capability-card').forEach((c, i) => {
+        c.classList.toggle('selected', i === idx);
+        c.classList.toggle('bg-gray-800/40', true);
+        if (i === idx) {
+          c.classList.add('border-blue-500/40', 'bg-blue-500/5');
+          c.classList.remove('border-gray-700/40');
+        } else {
+          c.classList.remove('border-blue-500/40', 'bg-blue-500/5');
+          c.classList.add('border-gray-700/40');
+        }
+      });
+      const d = capData[idx];
+      document.getElementById('capDetail').innerHTML = `
+        <div class="flex gap-3 items-center mb-4">
+          <span class="text-3xl">${d.icon}</span>
+          <h3 class="text-lg font-semibold">${d.title}</h3>
+        </div>
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="bg-gray-800/40 rounded-xl p-4">
+            <div class="text-xs text-red-400 uppercase tracking-wide mb-2">😤 问题</div>
+            <p class="text-sm text-gray-400 leading-relaxed">${d.problem}</p>
+          </div>
+          <div class="bg-gray-800/40 rounded-xl p-4">
+            <div class="text-xs text-blue-400 uppercase tracking-wide mb-2">⚡ 示例对比</div>
+            <p class="text-sm text-gray-400 leading-relaxed whitespace-pre-line">${d.example}</p>
+          </div>
+          <div class="bg-gray-800/40 rounded-xl p-4">
+            <div class="text-xs text-green-400 uppercase tracking-wide mb-2">🚀 AI Partner 如何帮</div>
+            <p class="text-sm text-gray-400 leading-relaxed">${d.training}</p>
+          </div>
+        </div>
+      `;
+      document.getElementById('capDetail').classList.add('animate-in');
+    }
+    selectCap(0);
+
+    // --- Layer toggle ---
+    function toggleLayer(el) {
+      const isOpen = el.classList.contains('layer-open');
+      document.querySelectorAll('.layer-item').forEach(l => l.classList.remove('layer-open'));
+      if (!isOpen) el.classList.add('layer-open');
+    }
+
+    // --- Workflow toggle ---
+    function setWorkflow(mode) {
+      const before = document.getElementById('workflowBefore');
+      const after = document.getElementById('workflowAfter');
+      const btnB = document.getElementById('btnBefore');
+      const btnA = document.getElementById('btnAfter');
+      if (mode === 'before') {
+        before.classList.remove('hidden');
+        after.classList.add('hidden');
+        btnB.className = 'px-5 py-2.5 rounded-xl border text-sm font-medium transition-all border-red-500/40 bg-red-500/10 text-red-300';
+        btnA.className = 'px-5 py-2.5 rounded-xl border text-sm font-medium transition-all border-gray-700 text-gray-400';
+      } else {
+        before.classList.add('hidden');
+        after.classList.remove('hidden');
+        btnA.className = 'px-5 py-2.5 rounded-xl border text-sm font-medium transition-all border-green-500/40 bg-green-500/10 text-green-300';
+        btnB.className = 'px-5 py-2.5 rounded-xl border text-sm font-medium transition-all border-gray-700 text-gray-400';
+      }
+    }
+
+    // --- Transform slider ---
+    function updateTransform(val) {
+      const specific = document.getElementById('specificCard');
+      const opacity = val / 100;
+      specific.style.opacity = 0.3 + opacity * 0.7;
+      specific.style.borderColor = `rgba(34,197,94,${0.1 + opacity * 0.25})`;
+    }
+
+    // Scroll reveal
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.demo-section').forEach(s => {
+      s.style.opacity = '0';
+      s.style.transform = 'translateY(20px)';
+      s.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      revealObserver.observe(s);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Partner — 不米文化 BUMI</title>
+  <meta name="description" content="停止追赶 AI，建立你自己的 AI 操作系统。Stop chasing AI. Build your AI Operating System.">
+  <meta property="og:title" content="AI Partner — 不米文化 BUMI">
+  <meta property="og:description" content="停止追赶 AI，建立你自己的 AI 操作系统。">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dist/output.css">
+</head>
+<body class="bg-gray-950 text-gray-100 antialiased">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 border-b border-gray-800/80 bg-gray-950/90 backdrop-blur-sm">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="flex items-center gap-3">
+        <span class="font-semibold text-white tracking-wide">不米文化</span>
+        <span class="text-gray-600">·</span>
+        <span class="text-gray-500 text-sm font-light tracking-widest">BUMI</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="#products" class="hidden sm:block text-sm text-gray-400 hover:text-white transition-colors" data-zh="课程" data-en="Courses">课程</a>
+        <a href="#newsletter" class="hidden sm:block text-sm text-gray-400 hover:text-white transition-colors" data-zh="订阅" data-en="Subscribe">订阅</a>
+        <button id="langToggle"
+          class="text-sm text-gray-400 hover:text-white border border-gray-700 hover:border-gray-500 px-3 py-1.5 rounded-full transition-all"
+          onclick="toggleLang()">EN</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ░░ HERO ░░ -->
+  <section class="min-h-screen flex items-center pt-20">
+    <div class="max-w-4xl mx-auto px-6 py-28 text-center">
+      <div class="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-1.5 text-blue-400 text-sm mb-10">
+        <span class="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse"></span>
+        <span>AI Partner by BUMI</span>
+      </div>
+
+      <h1 class="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight mb-6">
+        <span data-zh="停止追赶 AI" data-en="Stop Chasing AI">停止追赶 AI</span><br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400"
+              data-zh="建立你自己的 AI 操作系统" data-en="Build Your AI Operating System">
+          建立你自己的 AI 操作系统
+        </span>
+      </h1>
+
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed"
+         data-zh="工具每周在变。ChatGPT、Claude、Gemini……永远有下一个。真正赢在 AI 时代的人，不是买了最多工具的人，而是建立了系统的人。"
+         data-en="New tools every week. ChatGPT, Claude, Gemini — there's always a next one. The people winning in the AI era aren't chasing tools. They're running a system.">
+        工具每周在变。ChatGPT、Claude、Gemini……永远有下一个。<br>
+        真正赢在 AI 时代的人，不是买了最多工具的人，而是建立了系统的人。
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#newsletter"
+           class="group bg-blue-500 hover:bg-blue-400 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 transform hover:-translate-y-0.5 shadow-lg shadow-blue-500/20">
+          <span data-zh="免费订阅周报 →" data-en="Subscribe Free →">免费订阅周报 →</span>
+        </a>
+        <a href="#products"
+           class="border border-gray-700 hover:border-gray-500 text-gray-300 hover:text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200">
+          <span data-zh="了解课程" data-en="Explore Courses">了解课程</span>
+        </a>
+      </div>
+
+      <!-- Social proof nudge -->
+      <p class="text-gray-600 text-sm mt-10"
+         data-zh="已有 — 位创业者和职场人正在建立自己的 AI 操作系统"
+         data-en="Builders and professionals building their AI OS every week">
+        已有创业者和职场人正在建立自己的 AI 操作系统
+      </p>
+    </div>
+  </section>
+
+  <!-- ░░ PAIN ░░ -->
+  <section id="pain" class="py-28 bg-gray-900/40 border-y border-gray-800/50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-blue-400 text-sm uppercase tracking-widest mb-4"
+           data-zh="你是否感同身受" data-en="Does This Sound Familiar">你是否感同身受</p>
+        <h2 class="text-3xl md:text-4xl font-bold"
+            data-zh="三种 AI 焦虑，你可能都有" data-en="Three Types of AI Anxiety — Sound Familiar?">
+          三种 AI 焦虑，你可能都有
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="group bg-gray-800/40 border border-gray-700/40 hover:border-gray-600/60 rounded-2xl p-8 transition-all duration-300">
+          <div class="text-4xl mb-5">🔧</div>
+          <h3 class="text-lg font-semibold mb-3"
+              data-zh="工具焦虑" data-en="Tool Anxiety">工具焦虑</h3>
+          <p class="text-gray-400 leading-relaxed"
+             data-zh="每周都有新 AI 工具冒出来。光是「选哪个工具」就已经耗尽了注意力，还没开始用，已经精疲力竭。"
+             data-en="A new AI tool drops every week. Figuring out which one to use is exhausting. You're evaluating more than you're actually using.">
+            每周都有新 AI 工具冒出来。光是「选哪个工具」就已经耗尽了注意力，还没开始用，已经精疲力竭。
+          </p>
+        </div>
+
+        <div class="group bg-gray-800/40 border border-gray-700/40 hover:border-gray-600/60 rounded-2xl p-8 transition-all duration-300">
+          <div class="text-4xl mb-5">📉</div>
+          <h3 class="text-lg font-semibold mb-3"
+              data-zh="效果焦虑" data-en="Effectiveness Anxiety">效果焦虑</h3>
+          <p class="text-gray-400 leading-relaxed"
+             data-zh="用了 ChatGPT、Claude，但产出质量没有质变。你开始怀疑：是工具的问题，还是自己的问题？"
+             data-en="You use AI tools every day, but your output doesn't feel meaningfully better. You start wondering: is it the tool, or is it me?">
+            用了 ChatGPT、Claude，但产出质量没有质变。<br>你开始怀疑：是工具的问题，还是自己的问题？
+          </p>
+        </div>
+
+        <div class="group bg-gray-800/40 border border-gray-700/40 hover:border-gray-600/60 rounded-2xl p-8 transition-all duration-300">
+          <div class="text-4xl mb-5">😰</div>
+          <h3 class="text-lg font-semibold mb-3"
+              data-zh="替代焦虑" data-en="Replacement Anxiety">替代焦虑</h3>
+          <p class="text-gray-400 leading-relaxed"
+             data-zh="AI 每隔几个月就跳一个台阶。你不知道自己的价值在哪里，更不知道该怎么保住它。"
+             data-en="AI keeps leveling up every few months. You can't tell what your unique value is anymore, let alone how to protect it.">
+            AI 每隔几个月就跳一个台阶。你不知道自己的价值在哪里，更不知道该怎么保住它。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ INSIGHT: AI LAZINESS PARADOX ░░ -->
+  <section id="insight" class="py-28">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-4 py-1.5 text-amber-400 text-sm mb-6"
+             data-zh="核心洞察" data-en="Core Insight">核心洞察</div>
+        <h2 class="text-3xl md:text-4xl font-bold"
+            data-zh="AI 懒人悖论" data-en="The AI Laziness Paradox">AI 懒人悖论</h2>
+      </div>
+
+      <div class="bg-gradient-to-br from-gray-800/60 to-gray-900/60 border border-gray-700/50 rounded-3xl p-10 md:p-14 mb-10 text-center">
+        <p class="text-2xl md:text-3xl font-semibold mb-6 leading-snug"
+           data-zh="AI 越强，用懒人方式使用它的人越弱。" data-en="The smarter AI gets, the weaker lazy users become.">
+          AI 越强，用懒人方式使用它的人越弱。
+        </p>
+        <p class="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto"
+           data-zh="工具越先进，依赖工具的人越无力驾驭它。用 AI 替代思考、替代判断、替代决策的人，正在主动削弱自己使用 AI 的能力。"
+           data-en="The more powerful the tool, the less effective passive users become. People using AI to replace their thinking are actively weakening their ability to use AI well.">
+          工具越先进，依赖工具的人越无力驾驭它。用 AI 替代思考、替代判断、替代决策的人，正在主动削弱自己使用 AI 的能力。
+        </p>
+      </div>
+
+      <p class="text-center text-gray-400 mb-8"
+         data-zh="真正驾驭 AI 的人，需要五个核心能力。这些能力可以练，不是虚的理念。"
+         data-en="The people who truly leverage AI have five core capabilities. These are learnable — not just theory.">
+        真正驾驭 AI 的人，需要五个核心能力。这些能力可以练，不是虚的理念。
+      </p>
+
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+        <div class="bg-gray-800/30 border border-gray-700/30 hover:border-blue-500/30 rounded-2xl p-5 text-center transition-all">
+          <div class="text-blue-400 font-bold text-xl mb-2">01</div>
+          <div class="font-medium text-sm mb-1.5" data-zh="判断力" data-en="Judgment">判断力</div>
+          <div class="text-xs text-gray-500 leading-relaxed" data-zh="知道 AI 哪里说错了" data-en="Know when AI is wrong">知道 AI 哪里说错了</div>
+        </div>
+        <div class="bg-gray-800/30 border border-gray-700/30 hover:border-blue-500/30 rounded-2xl p-5 text-center transition-all">
+          <div class="text-blue-400 font-bold text-xl mb-2">02</div>
+          <div class="font-medium text-sm mb-1.5" data-zh="上下文" data-en="Context">上下文</div>
+          <div class="text-xs text-gray-500 leading-relaxed" data-zh="给 AI 有料的背景" data-en="Feed AI rich context">给 AI 有料的背景</div>
+        </div>
+        <div class="bg-gray-800/30 border border-gray-700/30 hover:border-blue-500/30 rounded-2xl p-5 text-center transition-all">
+          <div class="text-blue-400 font-bold text-xl mb-2">03</div>
+          <div class="font-medium text-sm mb-1.5" data-zh="品位标准" data-en="Taste">品位标准</div>
+          <div class="text-xs text-gray-500 leading-relaxed" data-zh="判断输出好不好" data-en="Judge output quality">判断输出好不好</div>
+        </div>
+        <div class="bg-gray-800/30 border border-gray-700/30 hover:border-blue-500/30 rounded-2xl p-5 text-center transition-all">
+          <div class="text-blue-400 font-bold text-xl mb-2">04</div>
+          <div class="font-medium text-sm mb-1.5" data-zh="决策能力" data-en="Decision">决策能力</div>
+          <div class="text-xs text-gray-500 leading-relaxed" data-zh="用 AI 分析来决策" data-en="Use AI to inform decisions">用 AI 分析来决策</div>
+        </div>
+        <div class="bg-gray-800/30 border border-gray-700/30 hover:border-blue-500/30 rounded-2xl p-5 text-center transition-all col-span-2 md:col-span-1">
+          <div class="text-blue-400 font-bold text-xl mb-2">05</div>
+          <div class="font-medium text-sm mb-1.5" data-zh="构建问题" data-en="Questions">构建问题</div>
+          <div class="text-xs text-gray-500 leading-relaxed" data-zh="知道要问什么" data-en="Know what to ask">知道要问什么</div>
+        </div>
+      </div>
+
+      <p class="text-center mt-10 text-lg font-medium text-gray-300"
+         data-zh="AI 是杠杆，不是拐杖。你越强，它越有用。"
+         data-en="AI is a lever, not a crutch. The stronger you are, the more powerful it becomes.">
+        AI 是杠杆，不是拐杖。你越强，它越有用。
+      </p>
+    </div>
+  </section>
+
+  <!-- ░░ SOLUTION: AI OS ░░ -->
+  <section id="solution" class="py-28 bg-gray-900/40 border-y border-gray-800/50">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-5"
+            data-zh="什么是 AI 操作系统？" data-en="What Is an AI Operating System?">
+          什么是 AI 操作系统？
+        </h2>
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed"
+           data-zh="AI OS 不是一个 App，不是一套 Prompt，而是让 AI 真正为你工作的个人系统。"
+           data-en="Your AI OS isn't an app. It's not a set of prompts. It's the personal system that makes AI actually work for you.">
+          AI OS 不是一个 App，不是一套 Prompt，<br>而是让 AI 真正为你工作的个人系统。
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-5 mb-10">
+        <div class="flex gap-5 bg-gray-800/40 border border-gray-700/40 rounded-2xl p-7 hover:border-gray-600/50 transition-all">
+          <div class="text-2xl shrink-0 mt-0.5">📚</div>
+          <div>
+            <h3 class="font-semibold mb-2" data-zh="知识库" data-en="Knowledge Base">知识库</h3>
+            <p class="text-gray-400 text-sm leading-relaxed"
+               data-zh="给 AI 喂饱上下文，让它真正理解你的工作、你的业务、你的判断方式。"
+               data-en="Give AI the context it needs to actually understand your work, business, and thinking.">
+              给 AI 喂饱上下文，让它真正理解你的工作、你的业务、你的判断方式。
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-5 bg-gray-800/40 border border-gray-700/40 rounded-2xl p-7 hover:border-gray-600/50 transition-all">
+          <div class="text-2xl shrink-0 mt-0.5">⚡</div>
+          <div>
+            <h3 class="font-semibold mb-2" data-zh="工作流" data-en="Workflow">工作流</h3>
+            <p class="text-gray-400 text-sm leading-relaxed"
+               data-zh="手动→半自动→全自动的渐进演化路径，不急于自动化，先把流程跑顺。"
+               data-en="A gradual path from manual → semi-automated → fully automated. Get the process right before automating.">
+              手动→半自动→全自动的渐进演化路径，不急于自动化，先把流程跑顺。
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-5 bg-gray-800/40 border border-gray-700/40 rounded-2xl p-7 hover:border-gray-600/50 transition-all">
+          <div class="text-2xl shrink-0 mt-0.5">🎯</div>
+          <div>
+            <h3 class="font-semibold mb-2" data-zh="判断框架" data-en="Judgment Framework">判断框架</h3>
+            <p class="text-gray-400 text-sm leading-relaxed"
+               data-zh="知道何时用 AI、何时不用、何时相信它的输出——这是最难练的一层。"
+               data-en="Know when to use AI, when not to, and when to trust its output. This is the hardest layer to build.">
+              知道何时用 AI、何时不用、何时相信它的输出——这是最难练的一层。
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-5 bg-gray-800/40 border border-gray-700/40 rounded-2xl p-7 hover:border-gray-600/50 transition-all">
+          <div class="text-2xl shrink-0 mt-0.5">🤝</div>
+          <div>
+            <h3 class="font-semibold mb-2" data-zh="协作模式" data-en="Collaboration Model">协作模式</h3>
+            <p class="text-gray-400 text-sm leading-relaxed"
+               data-zh="把 AI 当员工，而不是搜索引擎。它的价值取决于你有多少事给到它。"
+               data-en="Treat AI as an employee, not a search engine. Its value depends on how much real work you give it.">
+              把 AI 当员工，而不是搜索引擎。它的价值取决于你有多少事给到它。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-blue-500/5 border border-blue-500/20 rounded-2xl p-7 text-center">
+        <p class="text-gray-300 text-lg leading-relaxed"
+           data-zh="这套系统一旦建立，工具的更迭就不再让你焦虑。因为新工具是你系统的输入，而不是让你重新出发的理由。"
+           data-en="Once you have this system, new tools stop being anxiety-inducing. New tools are inputs to your system — not reasons to start over.">
+          这套系统一旦建立，工具的更迭就不再让你焦虑。<br>
+          因为新工具是你系统的输入，而不是让你重新出发的理由。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ PRODUCTS ░░ -->
+  <section id="products" class="py-28">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4"
+            data-zh="三条路径，从哪里开始都行" data-en="Three Ways to Start — Pick Yours">
+          三条路径，从哪里开始都行
+        </h2>
+        <p class="text-gray-400"
+           data-zh="免费订阅开始，按自己的节奏推进" data-en="Start free, progress at your own pace">
+          免费订阅开始，按自己的节奏推进
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 items-start">
+        <!-- Tier 1: Free -->
+        <div class="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-8 flex flex-col">
+          <div class="text-3xl mb-5">📨</div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest mb-2"
+               data-zh="免费" data-en="Free">免费</div>
+          <h3 class="text-xl font-bold mb-3"
+              data-zh="AI 不焦虑 · 周报" data-en="AI Clarity Weekly">AI 不焦虑 · 周报</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-grow"
+             data-zh="每周一期，超级个体视角。1 个洞察 + 1 个工具技巧 + 1 个思维转变。不追新工具，只讲系统思维和真实使用洞察。"
+             data-en="One insight, one tool tip, one mindset shift — every week. No hype, no tool reviews. Just the thinking that actually changes how you work.">
+            每周一期，超级个体视角。<br>1 个洞察 + 1 个工具技巧 + 1 个思维转变。<br>不追新工具，只讲系统思维和真实使用洞察。
+          </p>
+          <div class="text-3xl font-bold mb-6"
+               data-zh="免费" data-en="Free">免费</div>
+          <a href="#newsletter"
+             class="block text-center bg-gray-700/80 hover:bg-gray-600 text-white py-3.5 rounded-xl transition-all font-medium"
+             data-zh="免费订阅" data-en="Subscribe Free">免费订阅</a>
+        </div>
+
+        <!-- Tier 2: Course (featured) -->
+        <div class="relative bg-gray-800/40 border border-blue-500/40 rounded-2xl p-8 flex flex-col shadow-lg shadow-blue-500/5">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs font-semibold px-5 py-1.5 rounded-full whitespace-nowrap"
+               data-zh="推荐入门" data-en="Most Popular">推荐入门</div>
+          <div class="text-3xl mb-5">📚</div>
+          <div class="text-xs text-blue-400 uppercase tracking-widest mb-2"
+               data-zh="实战课" data-en="Course">实战课</div>
+          <h3 class="text-xl font-bold mb-3"
+              data-zh="AI 不焦虑 · 系统实战课" data-en="Stop AI Anxiety: Build the System">AI 不焦虑 · 系统实战课</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-grow"
+             data-zh="8 模块录播课，从认清焦虑根源到建立完整 AI 工作系统。含双周直播答疑 + 工具清单 + 可复用模板。"
+             data-en="8-module recorded course. Go from overwhelmed to operating a real AI workflow. Includes live Q&A, tool guides, and reusable templates.">
+            8 模块录播课，从认清焦虑根源到建立完整 AI 工作系统。<br>含双周直播答疑 + 工具清单 + 可复用模板。
+          </p>
+          <div class="mb-6">
+            <span class="text-3xl font-bold text-blue-400">¥399</span>
+            <span class="text-gray-500 text-sm ml-2 line-through">¥699</span>
+            <div class="text-xs text-gray-500 mt-1" data-zh="早鸟价，限时" data-en="Early bird, limited time">早鸟价，限时</div>
+          </div>
+          <a href="#"
+             class="block text-center bg-blue-500 hover:bg-blue-400 text-white py-3.5 rounded-xl transition-all font-semibold"
+             data-zh="了解课程" data-en="Explore Course">了解课程</a>
+        </div>
+
+        <!-- Tier 3: 1:1 -->
+        <div class="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-8 flex flex-col">
+          <div class="text-3xl mb-5">🎯</div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest mb-2"
+               data-zh="私定" data-en="1:1 Premium">私定</div>
+          <h3 class="text-xl font-bold mb-3"
+              data-zh="AI OS 私定工作坊" data-en="Build Your AI OS — 1:1">AI OS 私定工作坊</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-grow"
+             data-zh="4 周 1:1 深度辅导。审计 → 设计 → 搭建 → 磨合，手把手为你建立一套完整的专属 AI 操作系统。每月限 5 人。"
+             data-en="4 weeks, 1:1. Audit → Design → Build → Refine. We build your personal AI OS together from scratch. 5 spots per month.">
+            4 周 1:1 深度辅导。<br>审计 → 设计 → 搭建 → 磨合，手把手为你建立一套完整的专属 AI 操作系统。<br>每月限 5 人。
+          </p>
+          <div class="mb-6">
+            <span class="text-3xl font-bold">¥5,999</span>
+            <div class="text-xs text-gray-500 mt-1" data-zh="每月仅限 5 个名额" data-en="Only 5 spots/month">每月仅限 5 个名额</div>
+          </div>
+          <a href="mailto:sheng@bumi.co"
+             class="block text-center border border-gray-600 hover:border-gray-400 text-gray-300 hover:text-white py-3.5 rounded-xl transition-all font-medium"
+             data-zh="申请名额" data-en="Apply for a Spot">申请名额</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ ABOUT ░░ -->
+  <section id="about" class="py-28 bg-gray-900/40 border-y border-gray-800/50">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <div class="w-20 h-20 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold text-blue-400">S</div>
+        <h2 class="text-2xl font-bold"
+            data-zh="关于 Sheng" data-en="About Sheng">关于 Sheng</h2>
+      </div>
+
+      <div class="space-y-5 text-gray-400 text-lg leading-relaxed text-center">
+        <p data-zh="我是 Sheng，深圳超级个体。我用 AI 运营 8 个并行项目——一个人做过去一个团队的工作。"
+           data-en="I'm Sheng, a solo operator based in Shenzhen. I run 8 parallel projects with AI — doing the work of what used to require a full team.">
+          我是 Sheng，深圳超级个体。我用 AI 运营 8 个并行项目——一个人做过去一个团队的工作。
+        </p>
+        <p data-zh="我也经历过工具焦虑：每周刷 AI 新闻，买了一堆订阅，却发现自己的工作方式没有本质变化。变化发生在我停止追工具、开始建系统之后。"
+           data-en="I've been through tool anxiety too — subscribed to every new AI tool, read every newsletter, and still felt like nothing really changed. The shift happened when I stopped chasing tools and started building a system.">
+          我也经历过工具焦虑：每周刷 AI 新闻，买了一堆订阅，却发现自己的工作方式没有本质变化。<br>变化发生在我停止追工具、开始建系统之后。
+        </p>
+      </div>
+
+      <div class="mt-10 bg-gray-800/60 border border-gray-700/50 rounded-2xl p-8 text-center">
+        <p class="text-xl text-gray-200 leading-relaxed italic"
+           data-zh="「没有自己的生意，AI 就是个玩具。」" data-en="&ldquo;Without your own business, AI is just a toy.&rdquo;">
+          「没有自己的生意，AI 就是个玩具。」
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ NEWSLETTER CTA ░░ -->
+  <section id="newsletter" class="py-28">
+    <div class="max-w-xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4"
+          data-zh="从这里开始" data-en="Start Here">从这里开始</h2>
+      <p class="text-gray-400 text-lg mb-10 leading-relaxed"
+         data-zh="订阅「AI 不焦虑周报」，每周一个真实可用的系统洞察。免费，随时可取消。"
+         data-en="Subscribe to AI Clarity Weekly — one real, usable system insight every week. Free, unsubscribe anytime.">
+        订阅「AI 不焦虑周报」，每周一个真实可用的系统洞察。<br>免费，随时可取消。
+      </p>
+
+      <form class="flex flex-col sm:flex-row gap-3" onsubmit="handleSubscribe(event)">
+        <input type="email" id="emailInput" required
+               class="flex-1 bg-gray-800 border border-gray-700 focus:border-blue-500 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none transition-colors"
+               data-placeholder-zh="你的邮箱" data-placeholder-en="your@email.com"
+               placeholder="你的邮箱">
+        <button type="submit"
+                class="bg-blue-500 hover:bg-blue-400 text-white font-semibold px-8 py-4 rounded-xl transition-all whitespace-nowrap">
+          <span data-zh="订阅" data-en="Subscribe">订阅</span>
+        </button>
+      </form>
+
+      <div id="subscribeSuccess" class="hidden mt-6 text-green-400 font-medium"
+           data-zh="感谢订阅！第一期即将发送。" data-en="Thanks for subscribing! First issue coming soon.">
+        感谢订阅！第一期即将发送。
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ FOOTER ░░ -->
+  <footer class="border-t border-gray-800/80 py-12">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-600">
+      <div>
+        <span class="text-gray-400 font-medium">不米文化 BUMI</span>
+        <span class="mx-2">·</span>
+        <span data-zh="超级个体操作系统" data-en="The Solo Operator's System">超级个体操作系统</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="mailto:sheng@bumi.co" class="hover:text-gray-400 transition-colors">sheng@bumi.co</a>
+        <span data-zh="© 2026 不米文化咨询有限公司" data-en="© 2026 Bumi Consulting Ltd.">© 2026 不米文化咨询有限公司</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ░░ i18n + Interactions ░░ -->
+  <script>
+    let lang = localStorage.getItem('bumi-lang') || 'zh';
+
+    function applyLang() {
+      const btn = document.getElementById('langToggle');
+      btn.textContent = lang === 'zh' ? 'EN' : '中';
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+
+      document.querySelectorAll('[data-zh]').forEach(el => {
+        const text = el.getAttribute('data-' + lang);
+        if (text) el.textContent = text;
+      });
+
+      // Handle placeholder attributes
+      document.querySelectorAll('[data-placeholder-zh]').forEach(el => {
+        el.placeholder = el.getAttribute('data-placeholder-' + lang) || el.placeholder;
+      });
+    }
+
+    function toggleLang() {
+      lang = lang === 'zh' ? 'en' : 'zh';
+      localStorage.setItem('bumi-lang', lang);
+      applyLang();
+    }
+
+    function handleSubscribe(e) {
+      e.preventDefault();
+      const el = document.getElementById('subscribeSuccess');
+      el.textContent = el.getAttribute('data-' + lang);
+      el.classList.remove('hidden');
+      document.getElementById('emailInput').value = '';
+      setTimeout(() => el.classList.add('hidden'), 5000);
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        const target = id && id !== '#' ? document.querySelector(id) : null;
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('opacity-100', 'translate-y-0'); e.target.classList.remove('opacity-0', 'translate-y-4'); }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(s => {
+      s.classList.add('opacity-0', 'translate-y-4', 'transition-all', 'duration-700');
+      observer.observe(s);
+    });
+
+    applyLang();
+  </script>
+</body>
+</html>
